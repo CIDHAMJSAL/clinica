@@ -27,6 +27,7 @@ desktop.ini
 $RECYCLE.BIN/
 .DS_Store
 *.lnk
+*.bat
 
 # Logs e arquivos temporários
 *.log

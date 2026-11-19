@@ -25,19 +25,12 @@ O programa apoia o Sistema de Justiça (especialmente as Comissões de Soluçõe
 
 ## 🚀 Como Executar Localmente
 
-### Opção 1: Atalho Rápido no Windows
-Basta dar um duplo clique no arquivo:
-```
-iniciar-servidor.bat
-```
-Em seguida, abra no navegador o endereço:
-**[http://localhost:8080/](http://localhost:8080/)**
-
-### Opção 2: Via PowerShell
 No terminal do Windows PowerShell dentro da pasta do projeto, execute:
 ```powershell
 powershell -ExecutionPolicy Bypass -File server.ps1 -Port 8080
 ```
+Em seguida, abra no seu navegador o endereço:
+**[http://localhost:8080/](http://localhost:8080/)**
 
 ---
 
@@ -58,7 +51,6 @@ powershell -ExecutionPolicy Bypass -File server.ps1 -Port 8080
 │       ├── logo-fdd.png    # Fundo de Defesa dos Direitos Difusos
 │       └── cidha/          # Acervo fotográfico de vistorias, cartografia e equipe
 ├── server.ps1              # Servidor HTTP nativo em PowerShell
-├── iniciar-servidor.bat    # Executável para inicialização rápida com 1 clique
 ├── .gitignore              # Proteção contra envio de arquivos sensíveis ou internos
 └── README.md               # Documentação do repositório
 ```
