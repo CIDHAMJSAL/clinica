@@ -228,7 +228,9 @@ function initLightbox() {
     lightboxImg.alt = title;
     lightboxTitle.innerText = title;
     lightboxDesc.innerText = desc;
-    lightboxCounter.innerText = `${currentIndex + 1} de ${activeItems.length}`;
+    if (lightboxCounter) {
+      lightboxCounter.innerText = `${currentIndex + 1} de ${activeItems.length}`;
+    }
   };
 
   const openLightbox = (item, groupClass) => {
