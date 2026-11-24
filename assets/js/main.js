@@ -9,7 +9,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initStickyHeader();
   initScrollspy();
   initAnimatedCounters();
-  initClinicFilters();
   initGalleryFilters();
   initLightbox();
   initBackToTop();
@@ -151,43 +150,7 @@ function initAnimatedCounters() {
 }
 
 /* ==========================================================================
-   5. Clinic Network Filtering
-   ========================================================================== */
-function initClinicFilters() {
-  const filterBtns = document.querySelectorAll('.network-tabs .tab-btn');
-  const clinicCards = document.querySelectorAll('.clinic-card');
-
-  if (!filterBtns.length || !clinicCards.length) return;
-
-  filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      filterBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-
-      const filter = btn.getAttribute('data-filter');
-
-      clinicCards.forEach(card => {
-        const category = card.getAttribute('data-status');
-        if (filter === 'all' || category === filter) {
-          card.style.display = 'flex';
-          setTimeout(() => {
-            card.style.opacity = '1';
-            card.style.transform = 'translateY(0)';
-          }, 10);
-        } else {
-          card.style.opacity = '0';
-          card.style.transform = 'translateY(10px)';
-          setTimeout(() => {
-            card.style.display = 'none';
-          }, 250);
-        }
-      });
-    });
-  });
-}
-
-/* ==========================================================================
-   6. Gallery Category Filters
+   5. Gallery Category Filters
    ========================================================================== */
 function initGalleryFilters() {
   const filterBtns = document.querySelectorAll('.gallery-filters .filter-btn');
@@ -223,7 +186,7 @@ function initGalleryFilters() {
 }
 
 /* ==========================================================================
-   7. Interactive Lightbox Modal
+   6. Interactive Lightbox Modal (Gallery & Case Studies)
    ========================================================================== */
 function initLightbox() {
   const lightbox = document.getElementById('lightbox');
@@ -238,22 +201,25 @@ function initLightbox() {
   const nextBtn = lightbox.querySelector('.lightbox-nav.next');
 
   let currentIndex = 0;
-  let visibleImages = [];
+  let activeItems = [];
 
-  const updateVisibleList = () => {
-    visibleImages = Array.from(document.querySelectorAll('.gallery-item'))
-      .filter(item => item.style.display !== 'none');
+  const updateActiveList = (groupClass) => {
+    if (groupClass === 'case-media-item') {
+      activeItems = Array.from(document.querySelectorAll('.case-media-item'));
+    } else {
+      activeItems = Array.from(document.querySelectorAll('.gallery-item'))
+        .filter(item => item.style.display !== 'none');
+    }
   };
 
   const showImage = (index) => {
-    updateVisibleList();
-    if (!visibleImages.length) return;
+    if (!activeItems.length) return;
 
-    if (index < 0) index = visibleImages.length - 1;
-    if (index >= visibleImages.length) index = 0;
+    if (index < 0) index = activeItems.length - 1;
+    if (index >= activeItems.length) index = 0;
 
     currentIndex = index;
-    const currentItem = visibleImages[currentIndex];
+    const currentItem = activeItems[currentIndex];
     const imgEl = currentItem.querySelector('img');
     const title = currentItem.getAttribute('data-title') || imgEl.alt;
     const desc = currentItem.getAttribute('data-desc') || '';
@@ -262,12 +228,12 @@ function initLightbox() {
     lightboxImg.alt = title;
     lightboxTitle.innerText = title;
     lightboxDesc.innerText = desc;
-    lightboxCounter.innerText = `${currentIndex + 1} de ${visibleImages.length}`;
+    lightboxCounter.innerText = `${currentIndex + 1} de ${activeItems.length}`;
   };
 
-  const openLightbox = (item) => {
-    updateVisibleList();
-    currentIndex = visibleImages.indexOf(item);
+  const openLightbox = (item, groupClass) => {
+    updateActiveList(groupClass);
+    currentIndex = activeItems.indexOf(item);
     if (currentIndex === -1) currentIndex = 0;
 
     showImage(currentIndex);
@@ -281,7 +247,11 @@ function initLightbox() {
   };
 
   document.querySelectorAll('.gallery-item').forEach(item => {
-    item.addEventListener('click', () => openLightbox(item));
+    item.addEventListener('click', () => openLightbox(item, 'gallery-item'));
+  });
+
+  document.querySelectorAll('.case-media-item').forEach(item => {
+    item.addEventListener('click', () => openLightbox(item, 'case-media-item'));
   });
 
   closeBtn.addEventListener('click', closeLightbox);
@@ -327,7 +297,7 @@ function initLightbox() {
 }
 
 /* ==========================================================================
-   8. Back to Top Button
+   7. Back to Top Button
    ========================================================================== */
 function initBackToTop() {
   const btn = document.querySelector('.back-to-top');
@@ -347,7 +317,7 @@ function initBackToTop() {
 }
 
 /* ==========================================================================
-   9. Smooth Scroll for Anchor Links
+   8. Smooth Scroll for Anchor Links
    ========================================================================== */
 function initSmoothScroll() {
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
