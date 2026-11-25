@@ -1,0 +1,50 @@
+# ==============================================================================
+# .gitignore - Site CIDHA / UFPA (Programa MJSAL)
+# Ignora pastas de trabalho interno, documentos sensíveis e arquivos de sistema
+# ==============================================================================
+
+# Pastas de dados brutos e documentos internos
+Site CIDHA/
+Fotos/
+documentos/
+dados/
+
+# Documentos do Office e planilhas de controle interno
+*.docx
+*.doc
+*.xlsx
+*.xls
+*.pptx
+*.ppt
+*.pdf
+~$*
+
+# Arquivos de sistema operacional e atalhos Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+desktop.ini
+$RECYCLE.BIN/
+.DS_Store
+*.lnk
+*.bat
+
+# Logs e arquivos temporários
+*.log
+*.tmp
+*.bak
+*.swp
+*~
+
+# Ambientes, segredos e credenciais locais
+.env
+.env.*
+*.pem
+*.key
+*.cert
+
+# Configurações de IDEs
+.vscode/
+.idea/
+*.suo
+*.user

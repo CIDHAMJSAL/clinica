@@ -1,6 +1,6 @@
 # ==============================================================================
-# .gitignore - Site CIDHA / UFPA (Programa MJSAL)
-# Ignora pastas de trabalho interno, documentos sensíveis e arquivos de sistema
+# .gitignore - Programa Mais Justiça Socioambiental na Amazônia Legal (MJSAL)
+# Ignora pastas de trabalho interno, documentos sensíveis, PDFs e arquivos de sistema
 # ==============================================================================
 
 # Pastas de dados brutos e documentos internos
@@ -8,8 +8,12 @@ Site CIDHA/
 Fotos/
 documentos/
 dados/
+**/Site CIDHA/
+**/Fotos/
+**/documentos/
+**/dados/
 
-# Documentos do Office e planilhas de controle interno
+# Documentos do Office e PDFs pesados de controle interno
 *.docx
 *.doc
 *.xlsx
@@ -17,6 +21,13 @@ dados/
 *.pptx
 *.ppt
 *.pdf
+**/*.docx
+**/*.doc
+**/*.xlsx
+**/*.xls
+**/*.pptx
+**/*.ppt
+**/*.pdf
 ~$*
 
 # Arquivos de sistema operacional e atalhos Windows
@@ -28,6 +39,7 @@ $RECYCLE.BIN/
 .DS_Store
 *.lnk
 *.bat
+**/*.bat
 
 # Logs e arquivos temporários
 *.log
