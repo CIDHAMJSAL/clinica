@@ -19,9 +19,9 @@ document.addEventListener('DOMContentLoaded', () => {
    1. Mobile Menu Toggle
    ========================================================================== */
 function initMobileMenu() {
-  const toggleBtn = document.querySelector('.mobile-toggle');
-  const navMenu = document.querySelector('.nav-menu');
-  const navLinks = document.querySelectorAll('.nav-link, .nav-cta');
+  const toggleBtn = document.querySelector('.menu-toggle-btn, .mobile-toggle');
+  const navMenu = document.querySelector('.main-nav, .nav-menu');
+  const navLinks = document.querySelectorAll('.main-nav-link, .nav-link');
 
   if (!toggleBtn || !navMenu) return;
 
@@ -52,7 +52,7 @@ function initMobileMenu() {
    2. Sticky Header with Scroll Effect
    ========================================================================== */
 function initStickyHeader() {
-  const header = document.querySelector('.main-header');
+  const header = document.querySelector('.site-header, .main-header');
   if (!header) return;
 
   const handleScroll = () => {
@@ -72,7 +72,7 @@ function initStickyHeader() {
    ========================================================================== */
 function initScrollspy() {
   const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('.nav-link');
+  const navLinks = document.querySelectorAll('.main-nav-link, .nav-link');
 
   if (!sections.length || !navLinks.length) return;
 
